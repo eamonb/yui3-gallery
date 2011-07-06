@@ -4,7 +4,7 @@ YUI.add('gallery-user-patch-2529808', function(Y) {
 * Patch for YUI 3.3.0 DataTableScroll plugin bug #2529808
 * Enables support for using DataTableScroll plugin when data is lazy loaded (e.g. when using a datasource).
 * Ticket URL - http://yuilibrary.com/projects/yui3/ticket/2529808
-* 
+*
 * Thanks to eamonb a.k.a mosen for his peer review and help testing
 * @requires datatable-scroll
 */
@@ -45,4 +45,4 @@ if (!DTScroll.prototype.orig_syncWidths) {
 //}, '1.0.0', {requires:['datatable-scroll']});
 
 
-}, 'gallery-2011.05.18-19-11' ,{requires:['datatable-scroll']});
+}, '@VERSION@' ,{skinnable:false, requires:['datatable']});
