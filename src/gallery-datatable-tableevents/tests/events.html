@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Y.Plugin.DataTableEvents Test</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"
+        charset="utf-8"></script>
+    </head>
+    <body class="yui3-skin-sam">
+        <script type="text/javascript">
+            (function() {
+                YUI({
+                    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'min',
+                    //useBrowserConsole: true,
+                    allowRollup: false,
+                    modules : {
+                        'gallery-datatable-tableevents' : {
+                            'fullpath' : '../../../build/gallery-datatable-tableevents/gallery-datatable-tableevents-debug.js',
+                            'requires' : ['datatable']
+                        },
+                        'tableevents-test-click' : {
+                            'fullpath' : 'test-click.js',
+                            'requires' : ['gallery-datatable-tableevents']
+                        },
+                        'tableevents-test-attrs' : {
+                            'fullpath' : 'test-attrs.js',
+                            'requires' : ['gallery-datatable-tableevents']
+                        },
+                        'tableevents-test-regressions' : {
+                            'fullpath' : 'test-regressions.js',
+                            'requires' : ['gallery-datatable-tableevents']
+                        },
+                        'tableevents-test-propagation' : {
+                            'fullpath' : 'test-propagation.js',
+                            'requires' : ['gallery-datatable-tableevents']
+                        }
+                    }
+                }).use(
+                    "console"
+                    ,"test"
+                    ,"dump"
+                    ,"gallery-datatable-tableevents"
+                    ,"node-event-simulate"
+                    ,"tableevents-test-click"
+                    ,"tableevents-test-attrs"
+                    ,"tableevents-test-regressions"
+                    ,"tableevents-test-propagation"
+                    ,function(Y) {
+                    
+                
+                    var myConsole = new Y.Console().render();
+
+                    var suite = new Y.Test.Suite({name:"DataTableEvents Test Suite"});
+                    suite.add(Y.TestCase.TableEventsCaseClick);
+                    suite.add(Y.TestCase.TableEventsCaseAttrs);
+                    suite.add(Y.TestCase.TableEventsCasePropagation);
+                    suite.add(Y.TestCase.TableEventsCaseRegressions);
+
+                    Y.Test.Runner.setName("Test Runner");
+                    Y.Test.Runner.add(suite);
+                    Y.Test.Runner.run();
+                });
+            })();
+        </script>
+    </body>
+</html>
